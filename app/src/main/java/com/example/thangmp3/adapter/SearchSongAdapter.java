@@ -1,7 +1,6 @@
 package com.example.thangmp3.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.thangmp3.R;
-import com.example.thangmp3.model.Baihat;
+import com.example.thangmp3.model.Song;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,9 +20,9 @@ public class SearchSongAdapter extends RecyclerView.Adapter<SearchSongAdapter.Vi
 
     private Context context;
 
-    List<Baihat> listSongs; //TODO edit name
+    List<Song> listSongs; //TODO edit name
 
-    public SearchSongAdapter(Context context, List<Baihat> listSongs) {
+    public SearchSongAdapter(Context context, List<Song> listSongs) {
         this.context = context;
         this.listSongs = listSongs;
     }
@@ -39,10 +38,10 @@ public class SearchSongAdapter extends RecyclerView.Adapter<SearchSongAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Baihat baihat = listSongs.get(position);
-        holder.textViewNameSong.setText(baihat.getTenbaihat());
-        holder.textViewNameSinger.setText(baihat.getCasi());
-        Picasso.with(context).load(baihat.getHinhbaihat()).into(holder.imageViewSong);
+        Song song = listSongs.get(position);
+        holder.textViewNameSong.setText(song.getTenbaihat());
+        holder.textViewNameSinger.setText(song.getCasi());
+        Picasso.with(context).load(song.getHinhbaihat()).into(holder.imageViewSong);
     }
 
     @Override

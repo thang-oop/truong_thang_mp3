@@ -1,7 +1,7 @@
 package com.example.thangmp3.service;
 
-import com.example.thangmp3.model.Baihat;
-import com.example.thangmp3.model.Quangcao;
+import com.example.thangmp3.model.Song;
+import com.example.thangmp3.model.Advertise;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import retrofit2.http.POST;
 
 public interface DataService {
 
-    @GET("server/songBanner.php")
-    Call<List<Quangcao>> getDataBanner();
+    @GET("/thangtv/server/songBanner.php")
+    Call<List<Advertise>> getDataBanner();
 
     @FormUrlEncoded
     @POST("server/searchbaihat.php")
-    Call<List<Baihat>> GetSearchBaihat(@Field("tukhoa") String tukhoa);
+    Call<List<Song>> GetSearchBaihat(@Field("tukhoa") String tukhoa);
 }

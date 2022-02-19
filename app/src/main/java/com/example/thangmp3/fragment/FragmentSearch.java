@@ -11,7 +11,6 @@ import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.thangmp3.R;
 import com.example.thangmp3.adapter.SearchSongAdapter;
-import com.example.thangmp3.model.Baihat;
+import com.example.thangmp3.model.Song;
 import com.example.thangmp3.service.APIService;
 import com.example.thangmp3.service.DataService;
 
@@ -79,11 +78,11 @@ public class FragmentSearch extends Fragment {
 
     private void searchSong(String query) {
         DataService dataservice = APIService.getService();
-        retrofit2.Call<List<Baihat>> callback = dataservice.GetSearchBaihat(query);
-        callback.enqueue(new Callback<List<Baihat>>() {
+        retrofit2.Call<List<Song>> callback = dataservice.GetSearchBaihat(query);
+        callback.enqueue(new Callback<List<Song>>() {
             @Override
-            public void onResponse(retrofit2.Call<List<Baihat>> call, Response<List<Baihat>> response) {
-                ArrayList<Baihat> mangbaihat = (ArrayList<Baihat>) response.body();
+            public void onResponse(retrofit2.Call<List<Song>> call, Response<List<Song>> response) {
+                ArrayList<Song> mangbaihat = (ArrayList<Song>) response.body();
                 if (mangbaihat.size() > 0) {
                     searchSongAdapter = new SearchSongAdapter(getActivity(), mangbaihat);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -98,7 +97,7 @@ public class FragmentSearch extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Baihat>> call, Throwable t) {
+            public void onFailure(Call<List<Song>> call, Throwable t) {
 
             }
         });

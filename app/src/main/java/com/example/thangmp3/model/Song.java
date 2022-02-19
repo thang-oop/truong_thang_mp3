@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Baihat implements Parcelable {
+public class Song implements Parcelable {
 
     @SerializedName("Idbaihat")
     @Expose
@@ -27,7 +27,7 @@ public class Baihat implements Parcelable {
     @Expose
     private String luotthich;
 
-    protected Baihat(Parcel in) {
+    protected Song(Parcel in) {
         idbaihat = in.readString();
         tenbaihat = in.readString();
         hinhbaihat = in.readString();
@@ -36,15 +36,15 @@ public class Baihat implements Parcelable {
         luotthich = in.readString();
     }
 
-    public static final Creator<Baihat> CREATOR = new Creator<Baihat>() {
+    public static final Creator<Song> CREATOR = new Creator<Song>() {
         @Override
-        public Baihat createFromParcel(Parcel in) {
-            return new Baihat(in);
+        public Song createFromParcel(Parcel in) {
+            return new Song(in);
         }
 
         @Override
-        public Baihat[] newArray(int size) {
-            return new Baihat[size];
+        public Song[] newArray(int size) {
+            return new Song[size];
         }
     };
 

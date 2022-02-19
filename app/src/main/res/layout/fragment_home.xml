@@ -14,8 +14,12 @@
         android:orientation="vertical"
         tools:ignore="ExtraText">
 
-
-
+        <fragment
+            android:id="@+id/fragmentBanner"
+            android:name="com.example.thangmp3.fragment.FragmentBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </fragment>
 
     </LinearLayout>
 
