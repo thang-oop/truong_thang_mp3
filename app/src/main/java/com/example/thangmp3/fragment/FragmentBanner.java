@@ -2,6 +2,7 @@ package com.example.thangmp3.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,18 +69,18 @@ public class FragmentBanner extends Fragment {
                     bannerAdapter = new BannerAdapter(getActivity(), banners);
                     viewPager.setAdapter(bannerAdapter);
                     circleIndicator.setViewPager(viewPager);
-                    //tu dong chuyen sang quang cao khac
-                    handler = new android.os.Handler();
+
+                    handler = new Handler();
                     runnable = new Runnable() {
                         @Override
                         public void run() {
                             currentItem = viewPager.getCurrentItem();
                             currentItem++;
                             if (currentItem >= viewPager.getAdapter().getCount()) {
-                                currentItem = 0; //neu next den quang cao cuoi cung thi quay lai dau tien
+                                currentItem = 0;
                             }
                             viewPager.setCurrentItem(currentItem, true);
-                            handler.postDelayed(runnable, 3000); //sau 4s next 1 lan
+                            handler.postDelayed(runnable, 3000);
                         }
                     };
                     handler.postDelayed(runnable, 3000);
@@ -88,6 +89,7 @@ public class FragmentBanner extends Fragment {
 
             @Override
             public void onFailure(Call<List<Advertise>> call, Throwable t) {
+                Log.d("Fail", t.getMessage());
             }
         });
     }

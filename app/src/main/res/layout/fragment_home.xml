@@ -21,6 +21,13 @@
             android:layout_height="wrap_content">
         </fragment>
 
+<!--        <fragment-->
+<!--            android:name="com.example.thangmp3.fragment.FragmentPlaylist"-->
+<!--            android:id="@+id/fragmentPlaylist"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--        </fragment>-->
+
     </LinearLayout>
 
 </ScrollView>

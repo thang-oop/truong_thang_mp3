@@ -8,9 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,7 +39,7 @@ public class FragmentSearch extends Fragment {
 
     private RecyclerView recyclerViewSearchSong;
 
-    private View dataNull;
+    private TextView dataNull;
 
     private SearchSongAdapter searchSongAdapter;
 
@@ -78,7 +80,7 @@ public class FragmentSearch extends Fragment {
 
     private void searchSong(String query) {
         DataService dataservice = APIService.getService();
-        retrofit2.Call<List<Song>> callback = dataservice.GetSearchBaihat(query);
+        retrofit2.Call<List<Song>> callback = dataservice.getSearchSong(query);
         callback.enqueue(new Callback<List<Song>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Song>> call, Response<List<Song>> response) {

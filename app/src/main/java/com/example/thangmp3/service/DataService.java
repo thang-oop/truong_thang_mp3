@@ -13,10 +13,32 @@ import retrofit2.http.POST;
 
 public interface DataService {
 
-    @GET("/thangtv/server/songBanner.php")
+    @GET("thangtv/server/songBanner.php")
     Call<List<Advertise>> getDataBanner();
 
     @FormUrlEncoded
-    @POST("server/searchbaihat.php")
-    Call<List<Song>> GetSearchBaihat(@Field("tukhoa") String tukhoa);
+    @POST("thangtv/server/searchSong.php")
+    Call<List<Song>> getSearchSong(@Field("key") String key);
+
+    @FormUrlEncoded
+    @POST("thangtv/server/updateLikes.php")
+    Call<String> updateLikes(@Field("likes") int likes,
+                                 @Field("idSong") String idSong);
+
+    @FormUrlEncoded
+    @POST("thangtv/server/playlist.php")
+    Call<List<Song>> getPlaylistByAdvertise(@Field("idAdvertise") String idAdvertise);
+
+    @FormUrlEncoded
+    @POST("thangtv/server/playlist.php")
+    Call<List<Song>> getPlaylistByCategory(@Field("idCategory") String idCategory);
+
+    @FormUrlEncoded
+    @POST("thangtv/server/playlist.php")
+    Call<List<Song>> getPlaylistByAlbum(@Field("idAlbum") String idAlbum);
+
+    @FormUrlEncoded
+    @POST("thangtv/server/playlist.php")
+    Call<List<Song>> getPlaylistByPlaylist(@Field("idPlaylist") String idPlaylist);
+
 }

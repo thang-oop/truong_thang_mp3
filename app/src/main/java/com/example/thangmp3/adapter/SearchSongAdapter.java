@@ -39,9 +39,9 @@ public class SearchSongAdapter extends RecyclerView.Adapter<SearchSongAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Song song = listSongs.get(position);
-        holder.textViewNameSong.setText(song.getTenbaihat());
-        holder.textViewNameSinger.setText(song.getCasi());
-        Picasso.with(context).load(song.getHinhbaihat()).into(holder.imageViewSong);
+        holder.textViewNameSong.setText(song.getNameSong());
+        holder.textViewNameSinger.setText(song.getSinger());
+        Picasso.with(context).load(song.getImageSong()).into(holder.imageViewSong);
     }
 
     @Override

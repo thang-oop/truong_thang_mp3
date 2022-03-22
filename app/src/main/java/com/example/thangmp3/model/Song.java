@@ -6,34 +6,42 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Data;
+
+@Data
 public class Song implements Parcelable {
 
-    @SerializedName("Idbaihat")
+    @SerializedName("IdSong")
     @Expose
-    private String idbaihat;
-    @SerializedName("Tenbaihat")
+    private String idSong;
+
+    @SerializedName("NameSong")
     @Expose
-    private String tenbaihat;
-    @SerializedName("Hinhbaihat")
+    private String nameSong;
+
+    @SerializedName("ImageSong")
     @Expose
-    private String hinhbaihat;
-    @SerializedName("Casi")
+    private String imageSong;
+
+    @SerializedName("Singer")
     @Expose
-    private String casi;
-    @SerializedName("Linkbaihat")
+    private String singer;
+
+    @SerializedName("LinkSong")
     @Expose
-    private String linkbaihat;
-    @SerializedName("Luotthich")
+    private String linkSong;
+
+    @SerializedName("Likes")
     @Expose
-    private String luotthich;
+    private int likes;
 
     protected Song(Parcel in) {
-        idbaihat = in.readString();
-        tenbaihat = in.readString();
-        hinhbaihat = in.readString();
-        casi = in.readString();
-        linkbaihat = in.readString();
-        luotthich = in.readString();
+        idSong = in.readString();
+        nameSong = in.readString();
+        imageSong = in.readString();
+        singer = in.readString();
+        linkSong = in.readString();
+        likes = in.readInt();
     }
 
     public static final Creator<Song> CREATOR = new Creator<Song>() {
@@ -48,54 +56,6 @@ public class Song implements Parcelable {
         }
     };
 
-    public String getIdbaihat() {
-        return idbaihat;
-    }
-
-    public void setIdbaihat(String idbaihat) {
-        this.idbaihat = idbaihat;
-    }
-
-    public String getTenbaihat() {
-        return tenbaihat;
-    }
-
-    public void setTenbaihat(String tenbaihat) {
-        this.tenbaihat = tenbaihat;
-    }
-
-    public String getHinhbaihat() {
-        return hinhbaihat;
-    }
-
-    public void setHinhbaihat(String hinhbaihat) {
-        this.hinhbaihat = hinhbaihat;
-    }
-
-    public String getCasi() {
-        return casi;
-    }
-
-    public void setCasi(String casi) {
-        this.casi = casi;
-    }
-
-    public String getLinkbaihat() {
-        return linkbaihat;
-    }
-
-    public void setLinkbaihat(String linkbaihat) {
-        this.linkbaihat = linkbaihat;
-    }
-
-    public String getLuotthich() {
-        return luotthich;
-    }
-
-    public void setLuotthich(String luotthich) {
-        this.luotthich = luotthich;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -103,11 +63,11 @@ public class Song implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(idbaihat);
-        dest.writeString(tenbaihat);
-        dest.writeString(hinhbaihat);
-        dest.writeString(casi);
-        dest.writeString(linkbaihat);
-        dest.writeString(luotthich);
+        dest.writeString(idSong);
+        dest.writeString(nameSong);
+        dest.writeString(imageSong);
+        dest.writeString(singer);
+        dest.writeString(linkSong);
+        dest.writeInt(likes);
     }
 }
