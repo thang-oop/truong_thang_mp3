@@ -1,5 +1,6 @@
 package com.example.thangmp3.service;
 
+import com.example.thangmp3.model.PlayList;
 import com.example.thangmp3.model.Song;
 import com.example.thangmp3.model.Advertise;
 
@@ -40,5 +41,8 @@ public interface DataService {
     @FormUrlEncoded
     @POST("thangtv/server/playlist.php")
     Call<List<Song>> getPlaylistByPlaylist(@Field("idPlaylist") String idPlaylist);
+
+    @GET("thangtv/server/playListForCurrentDay.php")
+    Call<List<PlayList>> getPlaylistCurrentDay();
 
 }

@@ -50,11 +50,12 @@ public class ListMusicActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recyclerViewListMusic;
     private FloatingActionButton floatingActionButton;
-    private ImageView imageViewListMusic;
 
+    private ImageView imageViewListMusic;
     private Advertise advertise;
     private ArrayList<Song> songs;
     private ListMusicAdapter listMusicAdapter;
+
     private PlayList playList;
     private Album album;
     private Category category;
