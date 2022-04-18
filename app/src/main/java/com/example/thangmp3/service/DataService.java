@@ -1,5 +1,6 @@
 package com.example.thangmp3.service;
 
+import com.example.thangmp3.model.Album;
 import com.example.thangmp3.model.PlayList;
 import com.example.thangmp3.model.Song;
 import com.example.thangmp3.model.Advertise;
@@ -44,5 +45,14 @@ public interface DataService {
 
     @GET("thangtv/server/playListForCurrentDay.php")
     Call<List<PlayList>> getPlaylistCurrentDay();
+
+    @GET("server/getListOfPlaylist.php")
+    Call<List<PlayList>> getListOfPlaylist();
+
+    @GET("thangtv/server/getAllAlbum.php")
+    Call<List<Album>> getAllAlbum();
+
+    @GET("thangtv/server/albumHot.php")
+    Call<List<Album>> getAlbumHot();
 
 }

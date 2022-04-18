@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.thangmp3.R;
 import com.example.thangmp3.activity.ListMusicActivity;
-import com.example.thangmp3.activity.ListOfPlaylistsActivity;
+import com.example.thangmp3.activity.ListOfPlaylistActivity;
 import com.example.thangmp3.adapter.PlayListAdapter;
 import com.example.thangmp3.model.PlayList;
 import com.example.thangmp3.service.APIService;
@@ -51,7 +51,7 @@ public class FragmentPlaylist extends Fragment {
         textViewSeeMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ListOfPlaylistsActivity.class);
+                Intent intent = new Intent(getActivity(), ListOfPlaylistActivity.class);
                 startActivity(intent);
             }
         });

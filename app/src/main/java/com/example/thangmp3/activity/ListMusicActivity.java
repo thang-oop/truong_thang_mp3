@@ -1,5 +1,12 @@
 package com.example.thangmp3.activity;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,20 +18,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.thangmp3.R;
 import com.example.thangmp3.adapter.ListMusicAdapter;
-import com.example.thangmp3.model.Advertise;
-import com.example.thangmp3.model.Album;
-import com.example.thangmp3.model.Category;
+import com.example.thangmp3.model.*;
 import com.example.thangmp3.model.PlayList;
-import com.example.thangmp3.model.Song;
 import com.example.thangmp3.service.APIService;
 import com.example.thangmp3.service.DataService;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -37,12 +34,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Data;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-@Data
 public class ListMusicActivity extends AppCompatActivity {
 
     private CoordinatorLayout coordinatorLayout;
@@ -94,14 +89,14 @@ public class ListMusicActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolBarList);
         recyclerViewListMusic = findViewById(R.id.recyclerViewPlaylist);
         floatingActionButton = findViewById(R.id.floatingActionButton);
-        imageViewListMusic = findViewById(R.id.imageViewLikeSong);
+        imageViewListMusic = findViewById(R.id.imageViewPlaylist);
     }
 
     private void dataIntent() {
         Intent intent = getIntent();
         if (intent != null) {
             if (intent.hasExtra("banner")) {
-                advertise = intent.getParcelableExtra("banner");
+                advertise = (Advertise) intent.getSerializableExtra("banner");
                 Toast.makeText(this, advertise.getNameSong(), Toast.LENGTH_SHORT).show();
             }
             if(intent.hasExtra("itemPlaylist")){
@@ -119,19 +114,19 @@ public class ListMusicActivity extends AppCompatActivity {
     private void checkDataAdvertise() {
         if(advertise != null && !advertise.getNameSong().equals("")){
             setValueInView(advertise.getNameSong(), advertise.getImageSong());
-            getDataById(advertise.getIdAd());
+            getDataById(advertise.getIdAd(), "Ad");
         }
         if(playList != null && !playList.getName().equals("")){
             setValueInView(playList.getName(), playList.getImagePlayList());
-            getDataById(playList.getIdPlayList());
+            getDataById(playList.getIdPlayList(),"PL");
         }
         if (category != null && !category.getNameCategory().equals("")){
             setValueInView(category.getNameCategory(),category.getImageCategory());
-            getDataById(category.getIdCategory());
+            getDataById(category.getIdCategory(), "C");
         }
         if(album != null && !album.getNameAlbum().equals("")){
             setValueInView(album.getNameAlbum(),album.getImageAlbum());
-            getDataById(album.getIdAlbum());
+            getDataById(album.getIdAlbum(), "A");
         }
     }
 
@@ -150,9 +145,24 @@ public class ListMusicActivity extends AppCompatActivity {
         Picasso.with(this).load(image).into(imageViewListMusic);
     }
 
-    private void getDataById(String id) {
-        DataService dataservice = APIService.getService();
-        Call<List<Song>> callback = dataservice.getPlaylistByAlbum(id);
+    private void getDataById(String id, String type) {
+        final DataService dataservice = APIService.getService();
+        Call<List<Song>> callback = null;
+        switch (type) {
+            case "Ad":
+                callback = dataservice.getPlaylistByAdvertise(id);
+                break;
+            case "PL":
+                callback = dataservice.getPlaylistByPlaylist(id);
+                break;
+            case "C":
+                callback = dataservice.getPlaylistByCategory(id);
+                break;
+            case "A":
+                callback = dataservice.getPlaylistByAlbum(id);
+                break;
+        }
+
         callback.enqueue(new Callback<List<Song>>() {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {

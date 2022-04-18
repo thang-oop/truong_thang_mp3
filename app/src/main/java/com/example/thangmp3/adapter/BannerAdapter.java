@@ -17,13 +17,12 @@ import com.example.thangmp3.model.Advertise;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BannerAdapter extends PagerAdapter {
 
     private Context context;
 
-    private List<Advertise> listBanner;
+    private ArrayList<Advertise> listBanner;
 
     public BannerAdapter(Context context, ArrayList<Advertise> listBanner) {
         this.context = context;
